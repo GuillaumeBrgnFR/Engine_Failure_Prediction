@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath} 
+\usepackage{graphicx} 
+
+\title{Rapport du projet d'évaluation de performances}
+\author{Romain LAUP, Guillaume BOURGEON}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Le but de ce projet était de modéliser la dégradation de différents composants d'un moteur afin d'estimer l'évolution de son indicateur de santé et de sa durée de vie résiduelle. Pour ce faire, nous disposons d'un fichier excel avec plusieurs paramètres, et notre travail sera de prédire 4 paramètres à partir des 4 autres paramètres disponibles. Nous devons prédire les paramètres demandés de 2 manières différentes. Nous avons choisi de développer un réseau de neurones d'une part, en utilisant python, et nous avons opté pour une régression linéaire avec la méthode des moindres carrés sous Matlab pour la seconde.
+
+\section{Indicateurs de santé et seuils de défaillance}
+\subsection{Régression non-linéaire avec la méthode des moindres carrés}
+En observant les jeux de données, les indicateurs de santés les plus importants semblent être GO, CO, PW et T3P. En effet, ce sont ces 4 paramètres qui présentent le plus de différences entre le mode dégradé et non dégradé. (environ 20\% de différences). Cependant, nous allons prendre ne entrée les 4 paramètres disponibles pour éviter la linéarité et être plus précis.
+
+\section{Approches de modélisation}
+\subsection{Régression non-linéaire avec la méthode des moindres carrés}
+% Expliquez les deux approches que vous avez choisies pour modéliser le comportement du système : la régression non-linéaire avec les moindres carrés et le réseau de neurones. Décrivez comment ces approches fonctionnent et comment elles peuvent modéliser le comportement avec et sans dégradation du système.
+La régression non-linéaire avec la méthode des moindres carrés consiste à approximer les valeurs à prédire avec une combinaison non-linéaires des paramètres en entrée, afin de s'adapter à plus de situation que si on utilisait une régression linéaire. La méthode des moindres carrés permet de réduire l'erreur, c'est à dire la différence entre la valeur prédite et la valeur réelle.
+
+\section{Estimation des paramètres des modèles}
+\subsection{Régression non-linéaire avec la méthode des moindres carrés}
+% Expliquez comment vous avez estimé les paramètres pour vos modèles. Vous pouvez inclure des détails sur les techniques d'optimisation que vous avez utilisées et sur la manière dont vous avez divisé vos données pour l'entraînement et le test.
+
+
+\section{Fiabilité du système et évaluation de la performance}
+\subsection{Régression non-linéaire avec la méthode des moindres carrés}
+% Discutez de l'estimation de la fiabilité du système selon vos deux approches. Vous pouvez inclure des mesures comme la précision, le rappel, la F1-score, etc. 
+En utilisant la régression non-linéaire, nous obtenons des résultats assez satisfaisants:
+\begin{itemize}
+	\item Pour GO: un \(R^{2}\) de 1.00 et une RMSE de 0.88
+	\item Pour PW: un \(R^{2}\) de 1.00 et une RMSE de 0.61
+	\item Pour P1: un \(R^{2}\) de 0.56 et une RMSE de 0.14
+	\item Pour T3P: un \(R^{2}\) de 0.72 et une RMSE de 39.88
+\end{itemize}
+La valeur 1 pour les \(R^{2}\) de GO et PW posent question, mais cette méthode est la plus satisfaisante parmi celles que nous avons testé: en effet, l'interpolation spline nous donnait des \(R^{2}\) de 0.99 pour GO et PW, ce qui est plus réaliste, mais un \(R^{2}\) de 0 pour P1 et une valeur négative pour T3P. Les valeurs globales trouvées avec cette méthode sont les plus cohérente. \\
+
+De telles valeurs peuvent signifier qu'il y a une relation directe entre GO et les paramètres d'entrée, tout comme entre PW et les paramètres d'entrée. Cette hypothèse est renforcée par le fait que nous avons trouvé les mêmes résultats en ne gardant que CO comme valeur d'entrée.
+
+\section{Prédiction de la durée de vie résiduelle}
+\subsection{Régression non-linéaire avec la méthode des moindres carrés}
+% Expliquez comment vous avez utilisé vos modèles pour prédire la durée de vie résiduelle. Vous pouvez discuter des prédictions spécifiques que vos modèles ont faites et comment elles correspondent aux données réelles.
+
+\section{Interprétation des résultats}
+% Interprétez les résultats finaux obtenus par la meilleure approche. Expliquez pourquoi cette approche a été la plus efficace et comment elle pourrait être utilisée pour prédire les caractéristiques des moteurs à l'avenir.
+
+\section{Conclusion}
+% Résumez vos résultats principaux et discutez des implications de votre travail. Vous pouvez également suggérer des améliorations ou des extensions pour des travaux futurs.
+
+\end{document}
